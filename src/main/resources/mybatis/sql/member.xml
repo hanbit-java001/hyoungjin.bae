@@ -3,8 +3,34 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
+
+	<select id="selectMember" parameterType="map" resultType="MemberVO">
+		SELECT member_id AS memberId,
+			   member_name AS name,
+			   member_email AS email,
+			   member_pw AS password
+		  FROM MEMEBER
+		<choose>
+			<when test="email != null">
+				 WHERE member_email = #{email}
+			</when>
+			<when  test="memberId != null">
+				 WHERE member_id = #{memberId}
+			</when>
+		<otherwise>
+			WHERE email="!@#$"
+		</otherwise>
+		</choose>
+	</select>
+
 	<select id="countMember" parameterType="string" resultType="int">
 		SELECT COUNT(member_id)
+		  FROM MEMEBER
+		 WHERE member_email = #{email}
+	</select>
+
+	<select id="selectMemberId" parameterType="int" resultType="string">
+		SELECT member_id
 		  FROM MEMEBER
 		 WHERE member_email = #{email}
 	</select>

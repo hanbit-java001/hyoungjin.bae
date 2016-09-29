@@ -58,5 +58,14 @@ public class ScheduleDAO extends AbstractDAO {
 		return result;
 	}
 
+	public int countSchedule(String startDt, String endDt){
+		Map params = new HashMap();
+		params.put("startDt", startDt);
+		params.put("endDt", endDt);
+
+		int result = sqlSession.selectOne("schedule.countSchedule", params);
+
+		return result;
+	}
 
 }

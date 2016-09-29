@@ -7,4 +7,9 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 
+<typeAliases>
+	<typeAlias type="com.hanbit.hyoungjin.bae.core.vo.MemberVO"	alias="MemberVO"></typeAlias>
+	<typeAlias type="com.hanbit.hyoungjin.bae.core.vo.ScheduleVO" alias="ScheduleVO"></typeAlias>
+</typeAliases>
+
 </configuration>

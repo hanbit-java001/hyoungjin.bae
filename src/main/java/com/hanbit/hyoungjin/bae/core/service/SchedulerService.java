@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +45,17 @@ public class SchedulerService {
 		return scheduleDAO.selectSchedule(scheduleId);
 	}
 
+
+	public String generateId(){
+		String time = String.valueOf(System.currentTimeMillis());
+		String threadId = String.valueOf(Thread.currentThread().getId());//이렇게만하면 자리수가 달라질 수 있다 9->10 갈때
+		threadId = StringUtils.leftPad(threadId, 4, "0");
+		String uniqueId = time + threadId;
+
+		return uniqueId;
+	}
+
+	public int countSchedule(String startDt, String endDt){
+		return scheduleDAO.countSchedule(startDt, endDt);
+	}
 }

@@ -12,8 +12,15 @@ public class MemberVO {
 	private String email;
 	private String password;
 	private String currentPassword;
+	private String profileFileId;
 
 
+	public String getProfileFileId() {
+		return profileFileId;
+	}
+	public void setProfileFileId(String profileFileId) {
+		this.profileFileId = profileFileId;
+	}
 	public String getCurrentPassword() {
 		return currentPassword;
 	}

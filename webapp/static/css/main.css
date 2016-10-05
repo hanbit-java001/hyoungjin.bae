@@ -1,0 +1,118 @@
+html, body{
+	height: 100%;
+		min-height: 400px;
+}
+
+.main-container{
+	height: 100%;
+}
+
+.main-top{
+	position: absolute;		/* absolute주면 width도 해줘야해 첨에 0된다*/
+	top: 0px;
+	width: 100%;
+	height: 100px;
+	z-index: 10;
+}
+.main-top-body{
+	position: relative;
+	width: 80%;
+	height: 60px;
+	margin-top: 20px;
+	margin-left: auto;	/*auto 는 위아래는 안되고 width를지정해줘야 쓸수있다*/
+	margin-right: auto;
+}
+
+.main-logo{
+	position: absolute;
+	left: 0px;
+	width: 49%;
+	height: 100%;
+	display: inline-block;
+	color: white;
+	font-size: 25px;
+	font-right: auto;
+}
+
+.main-menu{
+	position: absolute;
+	right: 0px;
+	width: 49%;
+	height: 100%;
+	display: inline-block;
+}
+
+.main-menu ul{
+	position: absolute;
+	right: 0px;
+	list-style: none;
+	padding: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.main-menu ul li{
+	display: inline-block;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 50px;
+	cursor: pointer;
+	border-bottom: 2px solid transparent; /*transparent 는 투명*/
+}
+
+@media (max-width: 768px){
+	.main-menu ul li{
+		margin-left : 20px;
+		font-size: 12px;
+	}
+}
+
+.main-menu ul li:first-child{
+	margin-left: 0px;
+}
+.main-menu ul li:hover{
+	border-bottom: 2px solid white;
+}
+
+.main-content{
+	height: 100%;
+	background-color: black;
+	color: white;
+}
+
+.main-content-body{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 42px;
+	text-align: center;
+}
+
+.main-bottom{
+	position: absolute;	/* absolute하면 top. bottom 지정해줘야한다*/
+ 	bottom: 0px;	/*밑에 0px에서부터 시작한다 */
+	width: 100%;
+	height: 80px;
+	z-index: 10;
+	text-align: center;
+	color: white;
+}
+
+@media (max-height: 400px){
+	.main-bottom{
+		position: relative;
+		background-color: black;
+	}
+}
+
+.login-dialog{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	display: none;
+}

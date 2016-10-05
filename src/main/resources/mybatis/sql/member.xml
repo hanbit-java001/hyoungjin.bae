@@ -37,9 +37,9 @@
 
 	<insert id="insertMember" parameterType="MemberVO">
 		INSERT INTO MEMBER
-			(member_id, member_name, member_email, member_pw)
+			(member_id, member_name, member_email, member_pw, member_profile)
 		VALUES
-			(#{memberId}, #{email}, #{name}, #{password})
+			(#{memberId}, #{email}, #{name}, #{password}, #{profileFileId})
 	</insert>
 
 	<select id="selectPassword" parameterType="int" resultType="string">

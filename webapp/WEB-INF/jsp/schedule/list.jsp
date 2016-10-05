@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/static/plugins/fullcalendar/fullcalendar.min.css" />
 <link rel="stylesheet" href="/static/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css" />
 <link rel="stylesheet" href="/static/css/scheduler.css" />
+<link rel="stylesheet" href="/static/css/common.css" />
 </head>
 <body>
 

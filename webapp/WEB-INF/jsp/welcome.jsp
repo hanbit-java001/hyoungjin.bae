@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,18 +12,21 @@
 <link rel="stylesheet" href="/static/plugins/material/iconfont/material-icons.css">
 <link rel="stylesheet" href="/static/css/common.css" />
 <link rel="stylesheet" href="/static/css/main.css" />
-<title>한빛 스케쥴러</title>
+<title>한빛 스케줄러</title>
 </head>
 <body>
+
 	<div class="main-container">
 		<div class="main-top">
 			<div class="main-top-body">
-				<div class="main-logo">한빛 스케쥴러</div>
+				<div class="main-logo">한빛 스케줄러</div>
 				<div class="main-menu">
 					<ul>
-						<li id="menuJoin">회원가입</li>
-						<li id="menuLogin">로그인</li>
-						<li id="menuScheduler">스케쥴러</li>
+						<li id="menuJoin" class="beforeLogin">회원가입</li>
+						<li id="menuLogin" class="beforeLogin">로그인</li>
+						<li id="menuMypage" class="afterLogin">마이페이지</li>
+						<li id="menuLogout" class="afterLogin">로그아웃</li>
+						<li id="menuScheduler">스케줄러</li>
 					</ul>
 				</div>
 			</div>
@@ -31,14 +34,14 @@
 
 		<div class="main-content">
 			<div class="main-content-body">
-				스케쥴러에 가입하세요<br>
+				한빛 스케줄러에 가입하세요.<br>
 				무료입니다.<br>
-				<button class="btn btn-primary">무료로가입하기</button>
+				<button id="btnJoin" class="btn btn-primary">무료로 가입하기</button>
 			</div>
 		</div>
 
 		<div class="main-bottom">
-			한빛 스케쥴러 이즈 낫 디피컬트
+			Hanbit Scheduler is not difficult.
 		</div>
 
 		<div class="login-dialog">
@@ -51,11 +54,12 @@
 	   			<input type="password" class="form-control" id="txtPassword" placeholder="비밀번호">
 			</div>
 			<div class="bottom-buttons">
-				<button class="btnLogin btn btn-success" id="btnJoin">로그인</button>
-				<button class="btnLoginCancel btn btn-default" id="btnLoginCancel">취소</button>
+				<button class="btnLogin btn btn-success">로그인</button>
+				<button class="btnLoginCancel btn btn-default">취소</button>
 			</div>
 		</div>
 	</div>
+
 <script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
 <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/static/js/main.js"></script>

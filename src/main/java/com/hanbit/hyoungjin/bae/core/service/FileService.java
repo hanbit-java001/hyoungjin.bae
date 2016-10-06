@@ -65,12 +65,13 @@ public class FileService {
 		return fileVO;
 	}
 
-	public void removeFile(String fileId) throws Exception{
+	public void removeFile(String fileId) throws Exception {
 		FileVO fileVO = fileDAO.selectFile(fileId);
 
 		String filePath = fileVO.getFilePath();
-		FileUtils.forceDelete(new File(filePath));	//파일 시스템에 있는 파일 지우기
+		FileUtils.forceDelete(new File(filePath)); //시스템에 있는 파일 지우기
 
-		fileDAO.deleteFile(fileId);					//디비에 있는 파일 지우기
+		fileDAO.deleteFile(fileId);	//디비에 있는 파일 지우기
 	}
+
 }

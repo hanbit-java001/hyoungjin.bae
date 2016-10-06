@@ -3,6 +3,7 @@ package com.hanbit.hyoungjin.bae.core.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,35 +16,34 @@ public class SecurityService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityService.class);
 
-	private static PasswordEncoder encoder = new StandardPasswordEncoder();
+	private static PasswordEncoder encoder = new BCryptPasswordEncoder(4);
 
 	@Autowired
 	private MemberDAO memberDAO;
 
-	public String encryptPassword(String password){
+	public String encryptPassword(String password) {
 		return encoder.encode(password);
 	}
 
-	public boolean matchPassword(String rawPassword, String encryptedPaaword){
-		return encoder.matches(rawPassword, encryptedPaaword);
+	public boolean matchPassword(String rawPassword, String encryptedPassword) {
+		return encoder.matches(rawPassword, encryptedPassword);
 	}
 
-	public MemberVO getValidMember(String email, String password){
-		MemberVO member = null;
+	public MemberVO getValidMember(String email, String password) {
+		MemberVO member = memberDAO.selectMember(email);
 
-		try{
-			member = memberDAO.selectMember(email);
-		}
-		catch(Exception e){
+		if (member == null) {
 			throw new RuntimeException("가입되지 않은 이메일입니다.");
 		}
 
-		String encrytedPassword = member.getPassword();
+		String encryptedPassword = member.getPassword();
 
-		if(matchPassword(password, encrytedPassword)){
+		if (!matchPassword(password, encryptedPassword)) {
 			throw new RuntimeException("패스워드가 일치하지 않습니다.");
 		}
 
 		return member;
 	}
+
+
 }

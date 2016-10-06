@@ -16,39 +16,40 @@ public class MemberDAO {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MemberDAO.class);
 
-	@Autowired		//스프링이 값너준다 sqlSession에 autowired해서
+	@Autowired
 	private SqlSession sqlSession;
 
-	public int countMember(String email){
+	public int countMember(String email) {
 		return sqlSession.selectOne("member.countMember", email);
 	}
 
-	public int insertMember(MemberVO member){
+	public int insertMember(MemberVO member) {
 		return sqlSession.insert("member.insertMember", member);
 	}
 
-	public MemberVO selectMember(String email){
+	public MemberVO selectMember(String email) {
 		Map param = new HashMap();
 		param.put("email", email);
+
 		return sqlSession.selectOne("member.selectMember", param);
 	}
 
-	public MemberVO selectMember(int memberId){
+	public MemberVO selectMember(int memberId) {
 		Map param = new HashMap();
 		param.put("memberId", memberId);
+
 		return sqlSession.selectOne("member.selectMember", param);
 	}
 
-
-	public String selectPassword(int memberId){
-		return sqlSession.selectOne("member.selectPassword", memberId);
-	}
-
-	public int selectMemberId(String email){
+	public int selectMemberId(String email) {
 		return sqlSession.selectOne("member.selectMemberId", email);
 	}
 
-	public int updateMember(MemberVO member){
+	public String selectPassword(int memberId) {
+		return sqlSession.selectOne("member.selectPassword", memberId);
+	}
+
+	public int updateMember(MemberVO member) {
 		return sqlSession.update("member.updateMember", member);
 	}
 
@@ -57,3 +58,4 @@ public class MemberDAO {
 	}
 
 }
+

@@ -12,15 +12,15 @@ public class FileDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public int insertFile(FileVO file){
+	public int insertFile(FileVO file) {
 		return sqlSession.insert("file.insertFile", file);
 	}
 
-	public FileVO selectFile(String fileId){
+	public FileVO selectFile(String fileId) {
 		return sqlSession.selectOne("file.selectFile", fileId);
 	}
 
-	public int deleteFile(String fileId){
+	public int deleteFile(String fileId) {
 		return sqlSession.delete("file.deleteFile", fileId);
 	}
 

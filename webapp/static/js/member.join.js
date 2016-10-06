@@ -48,9 +48,9 @@ $(function() {
 		}).done(function(result) {
 			var name = result.name;
 
-			alert(name+"님 환영합니다.");
+			alert(name + "님 환영합니다.");
 
-			location.href="/";
+			location.href = "/";
 		});
 	});
 });

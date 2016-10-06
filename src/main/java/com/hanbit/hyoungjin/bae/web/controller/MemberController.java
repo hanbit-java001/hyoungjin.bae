@@ -1,6 +1,5 @@
 package com.hanbit.hyoungjin.bae.web.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -20,7 +19,7 @@ import com.hanbit.hyoungjin.bae.core.service.FileService;
 import com.hanbit.hyoungjin.bae.core.service.MemberService;
 import com.hanbit.hyoungjin.bae.core.vo.FileVO;
 import com.hanbit.hyoungjin.bae.core.vo.MemberVO;
-import com.hanbit.hyoungjin.bae.web.controller.MemberController;
+
 
 @Controller
 public class MemberController {
@@ -43,28 +42,27 @@ public class MemberController {
 	@ResponseBody
 	public Map doJoin(MultipartHttpServletRequest request) throws Exception {
 //		public Map doJoin(@RequestParam("name") String name, @RequestPart("imgProfile") MultipartFile profile){
-
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		String fileId = null;
+		String fileId = "";
 
 		Iterator<String> paramNames = request.getFileNames();
 
-		if (paramNames.hasNext()) {								//파일 여러개말고 한개만 저장할라꼬
+		if (paramNames.hasNext()) { //파일 여러개말고 한개만 저장할라꼬
 			String paramName = paramNames.next();
 
 			MultipartFile file = request.getFile(paramName);
+
 			FileVO fileVO = new FileVO();
 			fileVO.setContentType(file.getContentType());
-			fileVO.setFileSize(file.getSize());									// text/plain
-			fileVO.setFileName(file.getName());									// application/json
-			fileVO.setFileData(file.getBytes());								// text/html
-																				// text/xml
-			fileId = fileService.storeFile(fileVO);								// image/jpg		이렇게 파일마다 contentType가지고 있다.
+			fileVO.setFileSize(file.getSize());
+			fileVO.setFileName(file.getName());
+			fileVO.setFileData(file.getBytes());
+			// text/plain// application/json// text/html// text/xml	// image/jpg이렇게 파일마다 contentType가지고 있다.
 		}
 
-		try{
+		try {
 			MemberVO member = new MemberVO();
 			member.setName(name);
 			member.setEmail(email);
@@ -73,11 +71,12 @@ public class MemberController {
 
 			memberService.joinMember(member);
 		}
-		catch (Exception e){
-			// 파일 삭제
-			if(StringUtils.isNotBlank(fileId)){
+		catch (Exception e) {
+			if (StringUtils.isNotBlank(fileId)) {
 				fileService.removeFile(fileId);		//가입하다 오류나면 파일지운다.
 			}
+
+			throw new RuntimeException(e.getMessage(), e);
 		}
 
 		Map result = new HashMap();

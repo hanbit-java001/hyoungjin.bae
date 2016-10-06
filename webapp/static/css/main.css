@@ -60,6 +60,10 @@ html, body{
 	border-bottom: 2px solid transparent; /*transparent 는 투명*/
 }
 
+.main-menu ul li.afterLogin {
+	display: none;
+}
+
 @media (max-width: 768px){
 	.main-menu ul li{
 		margin-left : 20px;

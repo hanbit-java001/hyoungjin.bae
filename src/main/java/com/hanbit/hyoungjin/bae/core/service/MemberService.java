@@ -22,10 +22,10 @@ public class MemberService {
 	@Autowired
 	private SecurityService securityService;
 
-	public String joinMember(MemberVO member){
+	public String joinMember(MemberVO member) {
 		int countMember = memberDAO.countMember(member.getEmail());
 
-		if(countMember > 0){
+		if (countMember > 0) {
 			throw new RuntimeException("이미 가입된 이메일입니다.");
 		}
 
@@ -40,12 +40,12 @@ public class MemberService {
 		return member.getName();
 	}
 
-	public boolean modifyMember(MemberVO member){
+	public boolean modifyMember(MemberVO member) {
 		String passwordFromDB = memberDAO.selectPassword(member.getMemberId());
 		String passwordCurrent = member.getCurrentPassword();
-		String encryptedPsswordCurrent = securityService.encryptPassword(passwordCurrent);
+		String encryptedPasswordCurrent = securityService.encryptPassword(passwordCurrent);
 
-		if(!securityService.matchPassword(passwordFromDB, encryptedPsswordCurrent)){
+		if (!securityService.matchPassword(passwordFromDB, encryptedPasswordCurrent)) {
 			throw new RuntimeException("현재 패스워드를 잘못 입력하셨습니다.");
 		}
 
@@ -57,7 +57,8 @@ public class MemberService {
 		return countUpdate > 0;
 	}
 
-	public MemberVO getMember(int memberId){
+	public MemberVO getMember(int memberId) {
 		return memberDAO.selectMember(memberId);
 	}
+
 }
